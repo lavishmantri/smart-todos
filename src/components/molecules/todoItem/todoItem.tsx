@@ -1,6 +1,6 @@
 import React from 'react';
-import Checkbox from '../../atoms/checkbox';
-import Label from '../../atoms/label';
+import { Checkbox } from '../../atoms/checkbox';
+import { Label } from '../../atoms/label';
 
 export interface TodoItem {
   id: string;

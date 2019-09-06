@@ -1,14 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './App.scss';
 import { TodoListComponent } from './components/molecules/todoList';
-import todos from './sample/todos';
+import { TodoItem } from './components/molecules/todoItem';
+import { GlobalState } from './reducers';
 
-function App() {
+interface AppProps {
+  todos: TodoItem[]
+}
+
+function App(props: AppProps) {
   return (
     <div className="app">
-      <TodoListComponent todos={todos} />
+      <TodoListComponent todos={props.todos} />
     </div>
   );
 }
 
-export default App;
+export default connect((state: GlobalState) => ({ 
+  todos: state.todos
+}))(App);

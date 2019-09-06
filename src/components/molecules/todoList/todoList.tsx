@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { TodoItemComponent, TodoItem } from '../todoItem';
 
 interface TodoListProps {
@@ -14,7 +14,7 @@ interface TodoListProps {
  */
 export function TodoListComponent(props: TodoListProps) {
   return (
-      <div>
+      <div className="todolist-container">
         {props.todos.map(todo => <TodoItemComponent todo={todo} />)}
       </div>
     );
