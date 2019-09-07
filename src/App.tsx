@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.scss';
+
 import { TodoListComponent } from './components/molecules/todoList';
 import { TodoItem } from './components/molecules/todoItem';
 import { GlobalState } from './reducers';
+
+import './app.scss';
 
 interface AppProps {
   todos: TodoItem[]
@@ -17,6 +19,6 @@ function App(props: AppProps) {
   );
 }
 
-export default connect((state: GlobalState) => ({ 
+export default connect((state: GlobalState) => ({
   todos: state.todos
 }))(App);
