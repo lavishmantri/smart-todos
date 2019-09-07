@@ -1,0 +1,10 @@
+@import '../../../styles/variables';
+
+$checkbox__label__color: $color__text;
+
+.label {
+  flex-shrink: 0;
+  padding: .5rem 1rem;
+  color: $checkbox__label__color;
+  cursor: pointer;
+}

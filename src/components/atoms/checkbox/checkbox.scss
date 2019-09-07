@@ -1,0 +1,72 @@
+@import '../../../styles/variables';
+
+$checkbox__size: 20px;
+$switch__size: $checkbox__size;
+
+$checkbox__border__size: 2px;
+$checkbox__border__color: $color__primary;
+$checkbox__border__color--disabled: $color__back--high;
+
+$checkbox__checkmark__size: $checkbox__size - (2*$checkbox__border__size);
+$checkbox__checkmark__size--indeterminate: 2px;
+$checkbox__checkmark__color: $color__primary;
+$checkbox__checkmark__color--disabled: $color__back--high;
+
+$checkbox__label__color: $color__text;
+$checkbox__label__color--disabled: $color__text--low;
+
+
+.checkbox {
+  position: relative;
+  flex-shrink: 0;
+  width: $checkbox__size;
+  height: $checkbox__size;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none; // TODO: manage :focus
+  cursor: pointer;
+  border: $checkbox__border__size solid $checkbox__border__color;
+
+  &::before {
+    content: ' ';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    bottom: 50%;
+    left: 50%;
+    transition: all .1s;
+    background: $checkbox__checkmark__color;
+  }
+
+  &:checked,
+  &:indeterminate {
+    &::before {
+      top: $checkbox__border__size;
+      right: $checkbox__border__size;
+      bottom: $checkbox__border__size;
+      left: $checkbox__border__size;
+    }
+  }
+
+  &:indeterminate {
+    &::before {
+      top: ($checkbox__checkmark__size / 2) - ($checkbox__checkmark__size--indeterminate / 2);
+      bottom: ($checkbox__checkmark__size / 2) - ($checkbox__checkmark__size--indeterminate / 2);
+    }
+  }
+
+  &:disabled {
+    border-color: $checkbox__border__color--disabled;
+    cursor: default;
+
+    &::before {
+      background-color: $checkbox__checkmark__color--disabled;
+    }
+
+    + .m-checkbox__label {
+      color: $checkbox__label__color--disabled;
+      cursor: default;
+    }
+  }
+}

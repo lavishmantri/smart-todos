@@ -14,7 +14,7 @@ interface TodoItemProps {
 
 export function TodoItemComponent(props: TodoItemProps) {
   return (
-    <div>
+    <div className="d-flex align-items-center">
       <Checkbox checked={props.todo.completed} />
       <Label text={props.todo.text} />
     </div>
