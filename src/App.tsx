@@ -7,9 +7,7 @@ import './App.scss';
 function App() {
   return (
     <div className="app">
-      <header className="app-header">
-        Todo App
-      </header>
+      <header className="app-header">Todo App</header>
       <div className="todo-container">
         <TodoList />
       </div>

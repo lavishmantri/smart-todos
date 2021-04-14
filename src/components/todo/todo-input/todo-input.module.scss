@@ -1,0 +1,7 @@
+$baseMargin: 12px;
+
+@for $i from 1 through 10 {
+  .left-margin-#{$i} {
+    margin-left: $baseMargin * $i;
+  }
+}

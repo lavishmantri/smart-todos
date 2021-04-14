@@ -7,21 +7,51 @@ import styles from './input.module.scss';
 interface InputProps {
   onEnter?: (value: string) => void;
   onTab?: (value: string) => void;
+  onChange: (value: string) => void;
   value?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ value, onEnter = () => {}, onTab = () => {} }) => {
+export const Input: React.FC<InputProps> = ({
+  value,
+  onChange,
+  onEnter = () => {},
+  onTab = () => {},
+}) => {
+  const handleKeyDown = (evt: React.KeyboardEvent) => {
+    console.log('here 1');
+    if (evt.code === TabKey) {
+      evt.preventDefault();
+      onTab((evt.target as HTMLInputElement).value);
+      return false;
+    }
+  };
   const handleKeyUp = (evt: React.KeyboardEvent) => {
-    if (evt.code === EnterKey || evt.keyCode === 13) {
+    console.log('here 2');
+    if (evt.code === EnterKey) {
       onEnter((evt.target as HTMLInputElement).value);
       return;
     }
 
-    if (evt.code === TabKey || evt.keyCode === 13) {
+    if (evt.code === TabKey) {
       onTab((evt.target as HTMLInputElement).value);
       return;
     }
+
+    console.log('here 3');
   };
 
-  return <input value={value} onKeyUp={handleKeyUp} className={styles.input} />;
+  const handleOnChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(evt.target.value);
+  };
+
+  return (
+    <input
+      value={value}
+      onKeyUp={handleKeyUp}
+      onKeyDown={handleKeyDown}
+      onChange={handleOnChange}
+      className={styles.input}
+      autoFocus
+    />
+  );
 };
